@@ -6,11 +6,13 @@ const port = process.env.PORT || 8080;
 const authRouter = require('./routes/authRoutes');
 const bodyParser = require('body-parser');
 const { notFound, errorHandler } = require('./middlewares/errorHandler');
+const cookieParser = require('cookie-parser');
 dbConnect();
 
 // middleware => bodyparse using
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
+app.use(cookieParser());
 
 app.get("/", (req, res) =>{
     res.send("Hello Puja!");
