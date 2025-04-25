@@ -24,7 +24,7 @@ const authMiddleware = asyncHandler(async (req, res, next) =>{
     }
 });
 
-
+// middleware to check user admin or not
 const isAdmin = asyncHandler(async (req, res, next) =>{
     const {email} = req.user; // req.user ==> have all details of user
     const adminUser = await User.findOne({email});

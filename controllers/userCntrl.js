@@ -110,4 +110,56 @@ const deleteUser = asyncHandler(async (req, res) =>{
         throw new Error(err);
     }
 });
-module.exports = {createUser, loginUserCntrl, getAllUser, getSingleUser, deleteUser, updateUser};
+
+// todo user blocked 
+const blockUser = asyncHandler(async (req, res) =>{
+    const {id} = req.params;
+    try{
+        const block = await User.findByIdAndUpdate(id,{
+            isBlocked:true,
+
+        },
+        {
+            new:true,
+        }
+    );
+    res.json({
+        message: "User Blocked",
+    });
+       
+    }catch(err){
+        throw new Error(err);
+    }
+});
+
+// todo user unblocked or 
+const unblockUser = asyncHandler(async (req, res) =>{
+    const {id} = req.params;
+    try{
+        const block = await User.findByIdAndUpdate(id,{
+            isBlocked:false,
+
+        },
+        {
+            new:true,
+        }
+    );
+    res.json({
+        message: "User is UnBlocked",
+    });
+
+    }catch(err){
+        throw new Error(err);
+    }
+});
+
+module.exports = {
+    createUser, 
+    loginUserCntrl, 
+    getAllUser, 
+    getSingleUser, 
+    deleteUser, 
+    updateUser,
+    blockUser,
+    unblockUser
+};
