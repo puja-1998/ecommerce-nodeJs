@@ -45,6 +45,27 @@ const loginUserCntrl = asyncHandler(
     }
 ) ;
 
+//update user
+const updateUser = asyncHandler(async (req, res) =>{
+    const {id} = req.params;
+    try{
+        const updateUser = await User.findByIdAndUpdate(id, {
+            firstname: req?.body?.firstname,  // ? ==> if there is any err for that
+            lastname: req?.body?.lastname,
+            email: req?.body?.email,
+            mobile: req?.body?.mobile,
+        }, {
+            new: true,
+        });
+        res.json({
+            updateUser,
+            message: "User Updated Successfully",
+        });
+
+    }catch(err){
+        throw new Error(err);
+    }
+})
 
 //get all user
 const getAllUser = asyncHandler(async (req, res) =>{
@@ -89,4 +110,4 @@ const deleteUser = asyncHandler(async (req, res) =>{
         throw new Error(err);
     }
 });
-module.exports = {createUser, loginUserCntrl, getAllUser, getSingleUser, deleteUser};
+module.exports = {createUser, loginUserCntrl, getAllUser, getSingleUser, deleteUser, updateUser};
