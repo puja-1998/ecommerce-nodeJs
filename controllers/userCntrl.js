@@ -194,6 +194,11 @@ const handleRefreshToken = asyncHandler(async (req, res) =>{
    
 });
 
+//Logout functionality
+const logout = asyncHandler(async (req, res) =>{
+
+});
+
 module.exports = {
     createUser, 
     loginUserCntrl, 
@@ -203,5 +208,6 @@ module.exports = {
     updateUser,
     blockUser,
     unblockUser,
-    handleRefreshToken
+    handleRefreshToken,
+    logout
 };
